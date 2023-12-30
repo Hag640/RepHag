@@ -1,7 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
 import time
+
 
 
 driver = webdriver.Chrome(executable_path='C:\TestFiles\chromedriver.exe')
@@ -69,23 +71,27 @@ zmiana_ilosci.click()
 zmiana_ilosci.send_keys(Keys.BACK_SPACE)
 zmiana_ilosci.send_keys('99')
 
-zatw_koszyk = driver.find_element('xpath',"//*[@id="post-6"]/div[2]/div/div/div/a")
+zatw_koszyk = driver.find_element('xpath','//*[@id="post-6"]/div[2]/div/div/div/a')
 zatw_koszyk.click()
 
-first_name = driver.find_element('xpath',"//*[@id="billing_first_name"]")
+first_name = driver.find_element('xpath','//*[@id="billing_first_name"]')
 first_name.click()
 first_name.send_keys('Adrian')
 
-last_name = driver.find_element('xpath',"//*[@id="billing_last_name"]")
-last_name_name.click()
-last_name_name.send_keys('Testowy')
+last_name = driver.find_element('xpath','//*[@id="billing_last_name"]')
+last_name.click()
+last_name.send_keys('Testowy')
 
-company_name = driver.find_element('xpath',"//*[@id="billing_company"]")
+company_name = driver.find_element('xpath','//*[@id="billing_company"]')
 company_name.click()
 company_name.send_keys('Testowy')
 
+country = driver.find_element('xpath','//*[@id="select2-billing_country-container"]')
+country.click()
+company_name.send_keys(Keys.ARROW_DOWN)
+company_name.send_keys(Keys.ARROW_DOWN)
+company_name.send_keys(Keys.ENTER)
 
 
 
-driver.close()
 
