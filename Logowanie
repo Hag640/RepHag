@@ -31,8 +31,13 @@ logout = driver.find_element('xpath','//*[@id="post-8"]/div[2]/div[1]/a')
 logout.click()
 
 time.sleep(1)
-current_url = 'https://skleptest.pl/'
-print(driver.current_url)
-assert current_url == 'https://skleptest.pl/'
 
-driver.quit()
+try:
+    assert driver.current_url == 'https://skleptest.pl/'
+except AssertionError:
+    print('Błąd, adres url się nie zgadza')
+    raise
+else:
+    print('Test pozytywny')
+finally:
+    driver.quit()
