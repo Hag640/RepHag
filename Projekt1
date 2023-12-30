@@ -92,6 +92,37 @@ company_name.send_keys(Keys.ARROW_DOWN)
 company_name.send_keys(Keys.ARROW_DOWN)
 company_name.send_keys(Keys.ENTER)
 
+street = driver.find_element('xpath','//*[@id="billing_address_1"]')
+street.click()
+street.send_keys('Polna 145')
 
 
+city = driver.find_element('xpath','//*[@id="billing_city"]')
+city.click()
+city.send_keys('Toruń')
+
+state = driver.find_element('xpath','//*[@id="billing_state"]')
+state.click()
+state.send_keys('Kujawsko - Pomorskie')
+
+zip = driver.find_element('xpath','//*[@id="billing_postcode"]')
+zip.click()
+zip.send_keys('87-100')
+
+phone = driver.find_element('xpath','//*[@id="billing_phone"]')
+phone.click()
+phone.send_keys('333 666 999')
+
+
+payment = driver.find_element('xpath','//*[@id="payment_method_cod"]')
+
+time.sleep(1)
+
+payment = driver.find_element('xpath','//*[@id="payment"]/ul/li[3]/label')
+payment.click()
+
+time.sleep(1)
+
+order = driver.find_element('xpath','//*[@id="place_order"]')
+order.click()
 
