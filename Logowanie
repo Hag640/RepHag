@@ -1,0 +1,38 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+import time
+
+
+
+driver = webdriver.Chrome(executable_path='C:\TestFiles\chromedriver.exe')
+driver.get('https://skleptest.pl/')
+
+button1_accept = driver.find_element('xpath','/html/body/div/header[1]/div/div/div/ul/li[3]/a')
+button1_accept.click()
+
+email_field = driver.find_element ('xpath','//*[@id="username"]')
+email_field.send_keys('sta@test.pl')
+
+
+password_field = driver.find_element ('xpath','//*[@id="password"]')
+password_field.send_keys('testowehaslo')
+
+login = driver.find_element('xpath','//*[@id="customer_login"]/div[1]/form/p[3]/input[3]')
+login.click()
+
+logout = driver.find_element('xpath','//*[@id="post-8"]/div[2]/nav/ul/li[6]/a')
+logout.click()
+
+time.sleep(1)
+
+logout = driver.find_element('xpath','//*[@id="post-8"]/div[2]/div[1]/a')
+logout.click()
+
+time.sleep(1)
+current_url = 'https://skleptest.pl/'
+print(driver.current_url)
+assert current_url == 'https://skleptest.pl/'
+
+driver.quit()
