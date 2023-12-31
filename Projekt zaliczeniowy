@@ -178,6 +178,69 @@ else:
     print('Zamówienie zostało poprawnie złożone')
 driver.close()
 
+LOGOWANIE
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from Funkcje import make_screenshot
+import time
+
+
+
+driver = webdriver.Chrome(executable_path='C:\TestFiles\chromedriver.exe')
+driver.get('https://skleptest.pl/')
+try:
+    button1_accept = driver.find_element('xpath','/html/body/div/header[1]/div/div/div/ul/li[3]/a')
+    button1_accept.click()
+
+    email_field = driver.find_element ('xpath','//*[@id="username"]')
+    email_field.send_keys('sta@test.pl')
+
+
+    password_field = driver.find_element ('xpath','//*[@id="password"]')
+    password_field.send_keys('testowehaslo')
+
+    login = driver.find_element('xpath','//*[@id="customer_login"]/div[1]/form/p[3]/input[3]')
+    login.click()
+except:
+    print('Logowanie nieudane')
+    raise
+else:
+    print('Zalogowano się poprawnie')
+try:
+    logout = driver.find_element('xpath','//*[@id="post-8"]/div[2]/nav/ul/li[6]/a')
+    logout.click()
+
+    time.sleep(1)
+
+    logout = driver.find_element('xpath','//*[@id="post-8"]/div[2]/div[1]/a')
+    logout.click()
+
+    time.sleep(1)
+
+    assert driver.current_url == 'https://skleptest.pl/'
+except AssertionError:
+    print('Nie udało się wylogować')
+    raise
+else:
+    print('Wylogowanie przeszło pomyślnie')
+finally:
+    driver.quit()
+
+
+
+FUNKCJE
+from selenium import webdriver
+import time
+import datetime
+
+def make_screenshot(driver):
+    today = datetime.datetime.today()
+    short_date = today.strftime('_ekranu%H%M%S')
+    screen_name = 'C:\\Users\\Adrian\\PycharmProjects\\demo_test\\' + 'zrzut' + short_date + '.png'
+    driver.get_screenshot_as_file(screen_name)
+
 
 
 
